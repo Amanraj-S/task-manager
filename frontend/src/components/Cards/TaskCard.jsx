@@ -2,7 +2,7 @@ import moment from "moment";
 import React from "react";
 import AvatarGroup from "../layouts/AvatarGroup";
 import { LuPaperclip } from "react-icons/lu";
-import Progress from "../layouts/progress";
+import Progress from "../layouts/Progress";
 
 
 const TaskCard = ({
