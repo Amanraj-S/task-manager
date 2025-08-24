@@ -8,6 +8,7 @@ import axiosInstance from '../../utils/axiosInstance';
 import { API_PATHS } from '../../utils/apiPaths';
 import { UserContext } from '../../context/userContext';
 import uploadImage from '../../utils/uploadImage';
+import { toast } from 'react-toastify'; // ✅ added
 
 const SignUp = () => {
   const [profilePic, setProfilePic] = useState(null);
@@ -15,7 +16,6 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [adminInviteToken, setAdminInviteToken] = useState('');
-
   const [error, setError] = useState(null);
 
   const { updateUser } = useContext(UserContext);
@@ -53,17 +53,16 @@ const SignUp = () => {
         adminInviteToken
       });
 
-      const { token, role } = response.data;
-
-      if (token) {
-        localStorage.setItem("token", token);
+      if (response.data?.token) {
         updateUser(response.data);
 
-        if (role === "admin") {
-          navigate("/admin/dashboard");
-        } else {
-          navigate("/user/dashboard");
-        }
+        // ✅ Show success toast
+        toast.success("Successfully signed up! Please login.");
+
+        // ✅ Redirect to login page after short delay
+        setTimeout(() => {
+          navigate("/");
+        }, 1500);
       }
     } catch (error) {
       if (error.response && error.response.data.message) {
