@@ -1,4 +1,4 @@
-export const BASE_URL = "https://task-manager-ten-theta-93.vercel.app";
+export const BASE_URL = "https://task-manager-7h7f.onrender.com";
 
 export const API_PATHS = {
   AUTH: {
